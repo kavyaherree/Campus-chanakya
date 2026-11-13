@@ -41,7 +41,10 @@ export const LandingNavbar = ({ onOpenSearch, onOpenDemo, onOpenRegisterCollege 
         </Link>
 
         {/* Navigation Items (Center) */}
-        <ul className={`nav-links ${mobileMenuOpen ? 'mobile-open' : ''}`}>
+        <ul
+          id="landing-navigation"
+          className={`nav-links ${mobileMenuOpen ? 'mobile-active' : ''}`}
+        >
           {navItems.map((item) => (
             <li key={item.label}>
               <a
@@ -165,6 +168,8 @@ export const LandingNavbar = ({ onOpenSearch, onOpenDemo, onOpenRegisterCollege 
             className="mobile-menu-btn"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle navigation menu"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="landing-navigation"
           >
             {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>

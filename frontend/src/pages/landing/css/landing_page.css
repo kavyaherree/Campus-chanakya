@@ -3896,8 +3896,13 @@
   color: #0f172a;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1280px) {
   .desktop-only-search {
+    display: none !important;
+  }
+
+  .nav-actions > .btn-register-college-nav,
+  .nav-actions > .btn-signin-clean {
     display: none !important;
   }
 
@@ -3936,6 +3941,8 @@
     border: 1px solid #cbd5e1;
     border-radius: var(--radius-md);
     padding: 1.25rem;
+    max-height: calc(100dvh - 5rem);
+    overflow-y: auto;
     flex-direction: column;
     gap: 0.85rem;
     box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
@@ -3983,7 +3990,9 @@
     border: 1px solid #cbd5e1;
     display: block;
   }
+}
 
+@media (max-width: 992px) {
   .pillars-grid {
     grid-template-columns: repeat(2, 1fr) !important;
   }
