@@ -8,14 +8,56 @@ services:
     plan: free
     region: oregon
     envVars:
+      - key: HOST
+        value: 0.0.0.0
       - key: SERVER_PORT
         value: 8080
       - key: SPRING_DATASOURCE_URL
         value: jdbc:h2:file:./data/campus_chanakya;DB_CLOSE_DELAY=-1;MODE=MySQL;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE
-    disk:
-      name: backend-data
-      mountPath: /app/data
-      sizeGB: 1
+      - key: SPRING_DATASOURCE_USERNAME
+        value: sa
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: ""
+      - key: SPRING_DATASOURCE_DRIVER_CLASS_NAME
+        value: org.h2.Driver
+      - key: SPRING_JPA_DATABASE_PLATFORM
+        value: org.hibernate.dialect.H2Dialect
+      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
+        value: update
+      - key: GEMINI_MODEL
+        value: gemini-3.5-flash
+      - key: GOOGLE_API_KEY1
+        sync: false
+      - key: GOOGLE_API_KEY2
+        sync: false
+      - key: GOOGLE_API_KEY3
+        sync: false
+      - key: CAMPUSCHANAKYA_JWT_SECRET
+        sync: false
+      - key: CAMPUSCHANAKYA_JWT_EXPIRATION_MS
+        value: 86400000
+      - key: CORS_ORIGINS
+        sync: false
+      - key: SMTP_HOST
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: 587
+      - key: SMTP_EMAIL
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false
+      - key: SMTP_FROM_NAME
+        value: CampusChanakya
+      - key: SMTP_LOGIN
+        sync: false
+      - key: SPRING_MAIL_HOST
+        value: smtp.gmail.com
+      - key: SPRING_MAIL_PORT
+        value: 587
+      - key: SPRING_MAIL_USERNAME
+        sync: false
+      - key: SPRING_MAIL_PASSWORD
+        sync: false
 
   # Frontend Static Site (React 18 + Vite)
   - type: web
@@ -29,9 +71,5 @@ services:
         destination: /index.html
     envVars:
       - key: VITE_API_BASE_URL
-        fromService:
-          type: web
-          name: campus-chanakya-backend
-          envVarKey: RENDER_EXTERNAL_URL
-          property: host
+        sync: false
 
