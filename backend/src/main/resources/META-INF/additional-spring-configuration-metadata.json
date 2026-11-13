@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "campuschanakya.jwt.secret",
+      "type": "java.lang.String",
+      "description": "256-bit base64-encoded secret key for signing HMAC-SHA256 JWT tokens."
+    },
+    {
+      "name": "campuschanakya.jwt.expiration-ms",
+      "type": "java.lang.Long",
+      "description": "JWT authentication token expiration duration in milliseconds."
+    }
+  ]
+}

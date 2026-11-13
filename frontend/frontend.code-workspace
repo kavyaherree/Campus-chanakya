@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../.git"
+		},
+		{
+			"path": "../Project_Memory"
+		},
+		{
+			"path": "../data"
+		},
+		{
+			"path": "../backend"
+		},
+		{
+			"path": "../.vscode"
+		}
+	],
+	"settings": {}
+}

@@ -1,0 +1,37 @@
+services:
+  # Backend Web Service (Spring Boot 3 + Java 17)
+  - type: web
+    name: campus-chanakya-backend
+    env: docker
+    dockerfilePath: backend/Dockerfile
+    dockerContext: backend
+    plan: free
+    region: oregon
+    envVars:
+      - key: SERVER_PORT
+        value: 8080
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:h2:file:./data/campus_chanakya;DB_CLOSE_DELAY=-1;MODE=MySQL;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE
+    disk:
+      name: backend-data
+      mountPath: /app/data
+      sizeGB: 1
+
+  # Frontend Static Site (React 18 + Vite)
+  - type: web
+    name: campus-chanakya-frontend
+    env: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_BASE_URL
+        fromService:
+          type: web
+          name: campus-chanakya-backend
+          envVarKey: RENDER_EXTERNAL_URL
+          property: host
+
